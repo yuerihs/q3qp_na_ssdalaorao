@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMOTZpresso Café</title>
+</head>
+<body>
+<!--audio of the wepbpage-->
+  <audio autoplay>
+    <source src="media/audio.mp3">
+  </audio> 
+<!--statusbar-->
+  <div class="status">
+    <div class="statuscontent">
+      <h1 id="playerhealth"> </h1>
+      <h1 id="enemyhealth"></h1>
+      <script>
+         var playerhealth = 100;
+         var enemyhealth = 100;
+         document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+         document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+      </script>
+    </div>
+  </div>
+<!--tosscoin section-->
+    <div class="tosscoin">
+        <h1 id="tossheader">Toss A Coin!</h1>
+        <select id="dropdownbox" class="tossbuttons">
+            <option value="head">Head</option>
+            <option value="tail">Tail</option>
+        </select>
+        <button id="clicktoss" class="tossbuttons" onclick="tossCoin()">Toss Coin</button>
+       <p id="textresult"></p>
+       <script>
+            function tossCoin(){
+                var dropdown = document.getElementById('dropdownbox').value;
+                var result = Math.random() < 0.5 ? "head" : "tail";
+              /* Randomized coin toss */
+                if (dropdown == result) {
+                    document.getElementById("textresult").innerHTML = "Coin is  " + result + ". " + "You chose " + dropdown+ "! ";
+                    defbtn.disabled =  true;
+                    atkbtn.disabled = false;
+                    clicktoss.disabled = true;
+                    /* If coin lands on player's favor */
+                } 
+                else {
+                  document.getElementById("textresult").innerHTML = "Coin is " + result + ". " + "You chose  " + dropdown+ "! ";
+                  atkbtn.disabled = false;
+                  defbtn.disabled = false;
+                  clicktoss.disabled = true;
+                  /* If coin lands on opponent's favor */
+                }
+              }
+        </script> 
+    </div>
+<!--div for the resultbox-->
+    <div class="resultbox">
+      <!--individual divs for the text results-->
+      <div class="textresults">
+        <p id="resultcontent1"></p> 
+        <p id="resultcontent2"></p>
+        <p id="resultcontent3"></p>
+        <p id="resultcontent4"></p>
+      </div>
+    </div>
+    
+<!--div for the buttons-->
+    <div class="buttons">
+      <button id="atkbtn" onclick="playerAttack()">Attack</button>
+      <button id="defbtn" onclick="playerDefend()">Defend</button>
+      <button id="resbtn" onclick="resetBtn()">Reset</button>
+    </div>
+  
+  <script>
+    
+    function calculateDamage() { 
+      return Math.floor(Math.random() * 5) + 1;
+        /* Calculates random damage infliction  */
+  }
+
+    function opponentAction() { /*randomizes the opponent's actions*/
+      return Math.floor(Math.random() * 2) + 0;
+  }
+
+    function playerAttack() { /*used when the player attacks the opponent*/
+    document.getElementById('resultcontent1').innerHTML = "You will attack!";
+    var damage1 = calculateDamage();
+    defbtn.disabled = false;
+
+    if (opponentAction() == 1) { /* used to determine how opponent will attack */
+      document.getElementById('resultcontent1').innerHTML = "You will attack!";
+      var damage2 = calculateDamage(); 
+      playerhealth -= damage2; 
+      document.getElementById('resultcontent3').innerHTML = "Opponent attacked and inflicted " + damage2 + " damage/s!";
+      enemyhealth -= damage1;
+      document.getElementById('resultcontent2').innerHTML = "You attacked and inflicted " + damage1 + " damage/s!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+
+    } else { /*used to determine how the opponent will defend*/
+      defdmg = damage1 - 3;
+      if (defdmg > 0){
+      enemyhealth = enemyhealth - defdmg;
+      document.getElementById('resultcontent2').innerHTML = "You attacked and inflicted " + defdmg + " damage/s!";
+      document.getElementById('resultcontent3').innerHTML = "The Opponent defended from your attack!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+     }
+     else {
+      defdmg = 0;
+      document.getElementById('resultcontent2').innerHTML = "You attacked and inflicted " + damage1 + " damage/s!";
+      document.getElementById('resultcontent3').innerHTML = "The Opponent completely blocked your attack!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+    } 
+    } 
+    checkHealth();
+  }   /* Player attack function  */
+ 
+  function playerDefend() {
+    document.getElementById('resultcontent1').innerHTML = "You will defend!";
+    damage2 = calculateDamage();
+    if (opponentAction() == 0) {
+      defdmg = damage2 - 3;
+      if ( defdmg > 0){
+      enemyhealth = enemyhealth - defdmg;
+      document.getElementById('resultcontent2').innerHTML = "The opponent inflicted " + defdmg + " damage/s!";
+      document.getElementById('resultcontent3').innerHTML = "You defended from the enemy attack!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+      }
+      else {
+       defdmg = 0;
+      document.getElementById('resultcontent2').innerHTML = "The opponent inflicted " + damage2 + " damage/s!";
+      document.getElementById('resultcontent3').innerHTML = "You have completely blocked the attack!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+      } 
+    } 
+    else
+    {
+      document.getElementById('resultcontent2').innerHTML = "You defended!";
+      document.getElementById('resultcontent3').innerHTML = "However, your opponent defended too!";
+      document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+      document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+    }
+    checkHealth();
+  }
+     /* Player defend function  */
+
+  function resetBtn() {
+    
+    playerhealth = 100;
+    enemyhealth = 100;
+    document.getElementById('playerhealth').innerHTML = "Your health: " + playerhealth;
+    document.getElementById('enemyhealth').innerHTML = "Opponent health: " + enemyhealth;
+    document.getElementById('resultcontent1').innerHTML = "Toss the coin again! ";
+    document.getElementById('resultcontent2').innerHTML = " ";
+    document.getElementById('resultcontent3').innerHTML = " ";
+    document.getElementById('resultcontent4').innerHTML = " ";
+    document.getElementById("textresult").innerHTML = "Pick a coin again!";
+    defbtn.disabled =  false;
+    atkbtn.disabled =  false;
+    clicktoss.disabled = false;
+     /* Activates after game is over  */
+  }
+  function checkHealth(){
+
+    /*checks player and opponent health*/
+    
+        if ( playerhealth <= 0 && enemyhealth <= 0){
+         playerhealth = 0;
+         enemyhealth = 0;
+         document.getElementById("playerhealth").innerHTML= "Your health: " + playerhealth;
+         document.getElementById("playerhealth").innerHTML= "Opponent health: " + enemyhealth;
+         document.getElementById('resultcontent1').innerHTML= "Oh no! It's a tie";
+         document.getElementById('resultcontent2').innerHTML= "Try again! ";
+         document.getElementById('resultcontent3').innerHTML= " ";
+         defbtn.disabled =  true;
+         atkbtn.disabled =  true;
+         clicktoss.disabled = false;
+        } 
+        else if (playerhealth <= 0){
+         playerhealth = 0;
+         document.getElementById("playerhealth").innerHTML= "Your health: " + playerhealth;
+         document.getElementById('resultcontent1').innerHTML= "Opponent Wins!";
+         document.getElementById('resultcontent2').innerHTML= " ";
+         document.getElementById('resultcontent3').innerHTML= " ";
+         defbtn.disabled =  true;
+         atkbtn.disabled =  true;
+         clicktoss.disabled = false;
+
+         }
+        else if(enemyhealth <= 0){
+        enemyhealth = 0;
+         document.getElementById("resultcontent1").innerHTML= "You win";
+         document.getElementById('resultcontent2').innerHTML= "Opponent loses!";
+         document.getElementById('resultcontent3').innerHTML= " ";
+         document.getElementById("enemyhealth").innerHTML= "Opponent health: " + enemyhealth;
+         defbtn.disabled =  true;
+         atkbtn.disabled =  true;
+         clicktoss.disabled = false;
+        }
+       else  {
+        document.getElementById("playerhealth").innerHTML = "Your health: " + playerhealth;
+        document.getElementById("enemyhealth").innerHTML = "Opponent health: " + enemyhealth;
+       }
+  }
+</script>
+
+<!--Introduction Section-->
+<div class="welcomesection"> 
+  <div class="introcontent">
+    <p id="nametag"></p>
+  <script>
+     var intro = prompt('Please enter your name, dear customer ^^');
+     document.getElementById('nametag').innerHTML = "Welcome, " + intro + "." + " Indulge and unwind at our cozy coffee haven!";
+  </script>
+    <p id="pleasetoss"> Please toss a coin!</p>
+  </div>
+</div>
+
+</body>
+<link rel="stylesheet" href="style.css">
+</html>

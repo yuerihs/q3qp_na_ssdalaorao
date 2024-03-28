@@ -1,0 +1,166 @@
+/*Custom fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*{
+    padding: 0px;
+    margin: 0px; 
+}
+body{
+    height: 100vh;
+    background: url(media/background.jpg);
+    /*Unique background*/ 
+}
+.status{
+    text-align: center;
+    background-color: #EDE0D4;
+    padding: 15px;
+    width: 600px;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    box-shadow: 5px 5px rgba(64, 41, 29, 0.748);
+}
+.statuscontent{
+    display: flex;
+    justify-content: space-between;
+    /*Alignment for player and opponent actions*/
+}
+.statuscontent h1{
+    font-family: "Pixelify Sans", sans-serif;
+    color: rgb(64, 58, 48);
+    border-radius: 10px;
+    text-shadow: 2px 1.5px rgba(0, 0, 0, 0.309);
+    /*Custom font for for player and opponent actions*/
+}
+.tosscoin{
+    background-color: #bdb1a6;
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    margin-left: 60px;
+    border-radius: 20px;
+    box-shadow: 5px 5px rgba(64, 41, 29, 0.748);
+    text-align: center;
+    /*Alignment for tossing coin button*/
+}
+#tossheader{
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 700;
+    color: rgb(64, 58, 48);
+    border-radius: 10px;
+    margin-top: 20px;
+    text-shadow: 2px 1.5px rgba(0, 0, 0, 0.309);
+}
+#dropdownbox{
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    background-color: #84786e;
+    padding: 17px;
+    width: 10vw;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.348);
+      /*Coin selection*/
+    
+}
+#clicktoss{
+    font-family: "Montserrat", sans-serif;
+    background-color: #84786e;
+    padding: 18px;
+    width: 10vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.348);
+}
+.tossbuttons{
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+}
+#textresult{
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(64, 58, 48);
+    
+}
+.resultbox{
+    background-color:  #dbd0c7;
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    margin-top: -21em;
+    margin-left: 522px;
+    border-radius: 20px;
+    box-shadow: 5px 5px rgba(64, 41, 29, 0.748);
+    text-align: center;
+     /*Displays output text after coin toss*/
+}
+.buttons{
+    margin-top: 30px;
+    text-align: center;
+}
+#atkbtn{
+    font-family: "Montserrat", sans-serif;
+    background-color: #84786e;
+    padding: 18px;
+    width: 10vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.348);
+     /*Attack button*/
+} 
+#defbtn{
+    font-family: "Montserrat", sans-serif;
+    background-color: #84786e;
+    padding: 18px;
+    width: 10vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.348);
+     /*Defend button*/
+} 
+#resbtn{
+    font-family: "Montserrat", sans-serif;
+    background-color: #84786e;
+    padding: 18px;
+    width: 10vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.348);
+     /*Reset button*/
+}
+.resultbox p{
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(64, 58, 48);
+}
+.textresults{
+    margin-top: 7em;
+}
+.welcomesection{
+    background-color: #d8c9ba;
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    margin-top: -26.5em;
+    margin-left: 73em;
+    border-radius: 20px;
+    box-shadow: 5px 5px rgba(64, 41, 29, 0.748);
+    text-align: center;
+}
+.welcomesection p{
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(64, 58, 48);
+}
+.introcontent{
+    margin-top: 6.5em;
+}
+#pleasetoss{
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(135, 113, 76);
+}
